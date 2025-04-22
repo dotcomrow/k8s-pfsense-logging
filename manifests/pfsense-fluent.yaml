@@ -33,6 +33,7 @@ data:
         Record         hostname pfsense
 
     [OUTPUT]
+        Name    loki
         Host    logs-prod-036.grafana.net
         Port    443
         TLS     on
