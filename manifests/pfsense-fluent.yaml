@@ -1,0 +1,90 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pfsense-logging
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fluent-bit-config
+  namespace: pfsense-logging
+data:
+  fluent-bit.conf: |
+    [SERVICE]
+        Flush         1
+        Daemon        Off
+        Log_Level     info
+        Parsers_File  parsers.conf
+        HTTP_Server   Off
+        storage.metrics on
+
+    [INPUT]
+        Name              syslog
+        Mode              udp
+        Port              5140
+        Tag               pfsense
+        Syslog_Mode       rfc3164
+        Buffer_Chunk_Size 2M
+        Buffer_Max_Size   5M
+
+    [FILTER]
+        Name           record_modifier
+        Match          *
+        Record         hostname pfsense
+
+    [OUTPUT]
+        Name           stackdriver
+        Match          *
+        Resource       generic_node
+        google_service_credentials /fluent-bit/gcp-creds.json
+  parsers.conf: |
+    [PARSER]
+        Name        syslog
+        Format      regex
+        Regex       ^(?<time>[^ ]+\s+[^ ]+) (?<log>.*)
+        Time_Key    time
+        Time_Format %b %d %H:%M:%S
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: fluent-bit-gcp-creds
+  namespace: pfsense-logging
+type: Opaque
+data:
+  gcp-creds.json: REPLACE_WITH_BASE64_GCP_KEY
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fluent-bit
+  namespace: pfsense-logging
+spec:
+  selector:
+    matchLabels:
+      app: fluent-bit
+  template:
+    metadata:
+      labels:
+        app: fluent-bit
+    spec:
+      containers:
+        - name: fluent-bit
+          image: fluent/fluent-bit:latest
+          ports:
+            - containerPort: 5140
+              protocol: UDP
+          volumeMounts:
+            - name: config
+              mountPath: /fluent-bit/etc/
+            - name: gcp-creds
+              mountPath: /fluent-bit/gcp-creds.json
+              subPath: gcp-creds.json
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: fluent-bit-config
+        - name: gcp-creds
+          secret:
+            secretName: fluent-bit-gcp-creds
