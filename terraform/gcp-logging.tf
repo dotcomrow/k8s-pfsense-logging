@@ -35,9 +35,12 @@ output "gcp_alloy_logs_credentials" {
   sensitive = true
 }
 
+
+
 resource "google_service_account" "grafana" {
   account_id   = "grafana-stackdriver"
   display_name = "Grafana Stackdriver Access"
+  project      = google_project.infra.project_id
 }
 
 resource "google_project_iam_member" "grafana_monitoring_viewer" {
@@ -54,7 +57,7 @@ resource "google_project_iam_member" "grafana_browser" {
 
 resource "google_service_account_key" "grafana_key" {
   service_account_id = google_service_account.grafana.name
-  public_key_type    = "TYPE_X509_PEM_FILE"
+  public_key_type    = "TYPE_GOOGLE_CREDENTIALS_FILE"
 }
 
 output "grafana_service_account_key" {
