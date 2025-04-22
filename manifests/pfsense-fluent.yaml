@@ -97,8 +97,12 @@ kind: Service
 metadata:
   name: fluent-bit-udp
   namespace: pfsense-logging
+  annotations:
+    metallb.universe.tf/allow-shared-ip: fluent-bit-udp  
+    metallb.universe.tf/address: 10.0.0.50  
 spec:
-  type: NodePort
+  type: LoadBalancer
+  externalTrafficPolicy: Local
   selector:
     app: fluent-bit
   ports:
@@ -106,4 +110,4 @@ spec:
       protocol: UDP
       port: 5140
       targetPort: 5140
-      nodePort: 31514  # Choose an available port >30000
+
