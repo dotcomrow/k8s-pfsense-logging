@@ -23,7 +23,6 @@ data:
         Mode              udp
         Port              5140
         Tag               pfsense
-        Parser            syslog
         Buffer_Chunk_Size 2M
         Buffer_Max_Size   5M
 
@@ -44,12 +43,6 @@ data:
         tenant_id 1176576
         user    1176576
         password glc_eyJvIjoiMTM5NDAyMCIsIm4iOiJzdGFjay0xMjE4Nzc5LWhsLXJlYWQtc3VuY29hc3Qtc3lzdGVtcyIsImsiOiJhN3lZM2lUWTBRdzVqd3A1MzY0OXdkOEoiLCJtIjp7InIiOiJwcm9kLXVzLWVhc3QtMCJ9fQ==
-  parsers.conf: |
-    [PARSER]
-        Name        syslog
-        Format      syslog
-        Time_Key    time
-        Time_Format %b %d %H:%M:%S
 ---
 apiVersion: apps/v1
 kind: DaemonSet
