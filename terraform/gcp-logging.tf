@@ -22,11 +22,11 @@ resource "google_service_account" "pfsense_logs" {
 resource "google_project_iam_member" "log_writer" {
   project = google_project.infra.project_id
   role    = "roles/logging.logWriter"
-  member  = "serviceAccount:${google_service_account.alloy_logs.email}"
+  member  = "serviceAccount:${google_service_account.pfsense_logs.email}"
 }
 
 resource "google_service_account_key" "key" {
-  service_account_id = google_service_account.alloy_logs.name
+  service_account_id = google_service_account.pfsense_logs.name
   private_key_type   = "TYPE_GOOGLE_CREDENTIALS_FILE"
 }
 
