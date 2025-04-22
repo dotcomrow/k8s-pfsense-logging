@@ -91,3 +91,19 @@ spec:
         - name: gcp-creds
           secret:
             secretName: fluent-bit-gcp-creds
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fluent-bit-udp
+  namespace: pfsense-logging
+spec:
+  type: NodePort
+  selector:
+    app: fluent-bit
+  ports:
+    - name: syslog-udp
+      protocol: UDP
+      port: 5140
+      targetPort: 5140
+      nodePort: 31514  # Choose an available port >30000
