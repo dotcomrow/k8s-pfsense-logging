@@ -23,7 +23,7 @@ data:
         Mode              udp
         Port              5140
         Tag               pfsense
-        Syslog_Mode       rfc3164
+        Parser            syslog
         Buffer_Chunk_Size 2M
         Buffer_Max_Size   5M
 
