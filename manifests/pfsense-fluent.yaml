@@ -99,7 +99,7 @@ metadata:
   namespace: pfsense-logging
   annotations:
     metallb.universe.tf/allow-shared-ip: fluent-bit-udp  
-    metallb.universe.tf/address: 10.0.0.120
+    metallb.universe.tf/loadBalancerIPs: 10.0.0.120
 spec:
   type: LoadBalancer
   externalTrafficPolicy: Local
