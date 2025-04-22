@@ -38,7 +38,6 @@ data:
         Port    443
         TLS     on
         tenant_id 1176576
-        user     1176576
         password glsa_EKNLCRO362hWRIXhaOkJz2MmhhM4EhXJ_bb911c2a
   parsers.conf: |
     [PARSER]
