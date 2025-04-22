@@ -38,7 +38,7 @@ data:
         TLS     on
         tenant_id 1176576
         http_user    1176576
-        http_passwd glsa_9bqrVFo2ullCvt486zxVMW2BKcDZwOJk_56ef0f59
+        http_passwd glc_eyJvIjoiMTM5NDAyMCIsIm4iOiJsb2tpLXdyaXRlLWxva2kiLCJrIjoiOTQzZzgwQm44MDhVNkVNd2ltaXY3YWlIIiwibSI6eyJyIjoicHJvZC11cy1lYXN0LTAifX0=
   parsers.conf: |
     [PARSER]
         Name        pfsense_syslog
