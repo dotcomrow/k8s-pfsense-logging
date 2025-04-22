@@ -10,12 +10,15 @@ metadata:
   namespace: pfsense-logging
 data:
   fluent-bit.conf: |
-    [SERVICE]
-        Flush         1
-        Daemon        Off
-        Log_Level     info
-        HTTP_Server   Off
-        storage.metrics on
+    [INPUT]
+        Name              syslog
+        Mode              udp
+        Port              5140
+        Tag               pfsense
+        Parser            default_syslog         # ✅ Required!
+        Buffer_Chunk_Size 2M
+        Buffer_Max_Size   5M
+        Syslog_Flush_Interval 1
 
     [INPUT]
         Name              syslog
