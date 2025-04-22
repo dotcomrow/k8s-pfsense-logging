@@ -34,6 +34,8 @@ data:
 
     [OUTPUT]
         Name    loki
+        Match   *
+        labels  job=pfsense,hostname=$hostname
         Host    logs-prod-036.grafana.net
         Port    443
         TLS     on
