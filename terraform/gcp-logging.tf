@@ -34,3 +34,31 @@ output "gcp_alloy_logs_credentials" {
   value     = google_service_account_key.key.private_key
   sensitive = true
 }
+
+resource "google_service_account" "grafana" {
+  account_id   = "grafana-stackdriver"
+  display_name = "Grafana Stackdriver Access"
+}
+
+resource "google_project_iam_member" "grafana_monitoring_viewer" {
+  project = google_project.infra.project_id
+  role    = "roles/monitoring.viewer"
+  member  = "serviceAccount:${google_service_account.grafana.email}"
+}
+
+resource "google_project_iam_member" "grafana_browser" {
+  project = google_project.infra.project_id
+  role    = "roles/browser"
+  member  = "serviceAccount:${google_service_account.grafana.email}"
+}
+
+resource "google_service_account_key" "grafana_key" {
+  service_account_id = google_service_account.grafana.name
+  public_key_type    = "TYPE_X509_PEM_FILE"
+}
+
+output "grafana_service_account_key" {
+  value     = google_service_account_key.grafana_key.private_key
+  sensitive = true
+}
+
