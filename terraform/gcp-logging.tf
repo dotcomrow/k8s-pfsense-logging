@@ -49,6 +49,12 @@ resource "google_project_iam_member" "grafana_monitoring_viewer" {
   member  = "serviceAccount:${google_service_account.grafana.email}"
 }
 
+resource "google_project_iam_member" "grafana_logging_viewer" {
+  project = google_project.infra.project_id
+  role    = "roles/logging.viewer"
+  member  = "serviceAccount:${google_service_account.grafana.email}"
+}
+
 resource "google_project_iam_member" "grafana_browser" {
   project = google_project.infra.project_id
   role    = "roles/browser"
