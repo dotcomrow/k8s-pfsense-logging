@@ -42,12 +42,12 @@ data:
         Port    443
         TLS     on
         tenant_id 1176576
-        tenant_id_key glsa_EKNLCRO362hWRIXhaOkJz2MmhhM4EhXJ_bb911c2a
+        user    1176576
+        password glc_eyJvIjoiMTM5NDAyMCIsIm4iOiJzdGFjay0xMjE4Nzc5LWhsLXJlYWQtc3VuY29hc3Qtc3lzdGVtcyIsImsiOiJhN3lZM2lUWTBRdzVqd3A1MzY0OXdkOEoiLCJtIjp7InIiOiJwcm9kLXVzLWVhc3QtMCJ9fQ==
   parsers.conf: |
     [PARSER]
         Name        syslog
-        Format      regex
-        Regex       ^(?<time>[^ ]+\s+[^ ]+) (?<log>.*)
+        Format      syslog
         Time_Key    time
         Time_Format %b %d %H:%M:%S
 ---
