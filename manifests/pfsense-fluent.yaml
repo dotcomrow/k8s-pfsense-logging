@@ -19,14 +19,6 @@ data:
         Buffer_Chunk_Size 2M
         Buffer_Max_Size   5M
 
-    [INPUT]
-        Name              syslog
-        Mode              udp
-        Port              5140
-        Tag               pfsense
-        Buffer_Chunk_Size 2M
-        Buffer_Max_Size   5M
-
     [FILTER]
         Name           record_modifier
         Match          *
