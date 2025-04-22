@@ -37,6 +37,9 @@ data:
         Match          *
         Resource       generic_node
         google_service_credentials /fluent-bit/gcp-creds.json
+        location       us-east1
+        namespace      pfsense
+        node_id        pfsense-fw01
   parsers.conf: |
     [PARSER]
         Name        syslog
