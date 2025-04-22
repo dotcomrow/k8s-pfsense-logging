@@ -18,7 +18,6 @@ data:
         Parser            default_syslog         # ✅ Required!
         Buffer_Chunk_Size 2M
         Buffer_Max_Size   5M
-        Syslog_Flush_Interval 1
 
     [INPUT]
         Name              syslog
