@@ -12,7 +12,7 @@ data:
   fluent-bit.conf: |
     [SERVICE]
       Parsers_File parsers.conf
-      
+
     [INPUT]
         Name              syslog
         Mode              udp
@@ -37,8 +37,8 @@ data:
         Port    443
         TLS     on
         tenant_id 1176576
-        user    1176576
-        password glc_eyJvIjoiMTM5NDAyMCIsIm4iOiJzdGFjay0xMjE4Nzc5LWhsLXJlYWQtc3VuY29hc3Qtc3lzdGVtcyIsImsiOiJhN3lZM2lUWTBRdzVqd3A1MzY0OXdkOEoiLCJtIjp7InIiOiJwcm9kLXVzLWVhc3QtMCJ9fQ==
+        http_user    1176576
+        http_passwd glc_eyJvIjoiMTM5NDAyMCIsIm4iOiJzdGFjay0xMjE4Nzc5LWhsLXJlYWQtc3VuY29hc3Qtc3lzdGVtcyIsImsiOiJhN3lZM2lUWTBRdzVqd3A1MzY0OXdkOEoiLCJtIjp7InIiOiJwcm9kLXVzLWVhc3QtMCJ9fQ==
   parsers.conf: |
     [PARSER]
         Name        pfsense_syslog
