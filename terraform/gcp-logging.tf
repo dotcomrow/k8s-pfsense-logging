@@ -25,17 +25,15 @@ resource "google_project_iam_member" "log_writer" {
   member  = "serviceAccount:${google_service_account.pfsense_logs.email}"
 }
 
-resource "google_service_account_key" "key" {
+resource "google_service_account_key" "logging_key" {
   service_account_id = google_service_account.pfsense_logs.name
   private_key_type   = "TYPE_GOOGLE_CREDENTIALS_FILE"
 }
 
 output "gcp_alloy_logs_credentials" {
-  value     = google_service_account_key.key.private_key
+  value     = google_service_account_key.logging_key.private_key
   sensitive = true
 }
-
-
 
 resource "google_service_account" "grafana" {
   account_id   = "grafana-stackdriver"
