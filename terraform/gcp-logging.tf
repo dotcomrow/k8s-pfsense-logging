@@ -15,7 +15,7 @@ resource "google_project_service" "logging" {
 
 resource "google_service_account" "pfsense_logs" {
   account_id   = "pfsense-logs"
-  display_name = "Pfsense Log Writer"
+  display_name = "Pfsense Log Writer Service Account"
   project      = google_project.infra.project_id
 }
 
