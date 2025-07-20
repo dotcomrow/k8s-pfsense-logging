@@ -1,4 +1,4 @@
-name: "Build and Deploy DB Schema"
+name: "Terraform Build and Deploy"
 
 on:
     push:
