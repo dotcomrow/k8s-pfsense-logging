@@ -29,7 +29,7 @@ resource "google_service_account_key" "logging_key" {
   service_account_id = google_service_account.pfsense_logs.name
   keepers = {
     # Change this to force a new key (e.g., timestamp or version)
-    rotation_trigger = "20250720"
+    rotation_trigger = "20250721"
   }
   private_key_type   = "TYPE_GOOGLE_CREDENTIALS_FILE"
 }
