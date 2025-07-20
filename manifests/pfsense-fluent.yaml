@@ -53,7 +53,7 @@ data:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: fluent-bit-gcp-creds
+  name: fluent-bit-gcp-key
   namespace: pfsense-logging
 type: Opaque
 data:
@@ -92,7 +92,7 @@ spec:
             name: fluent-bit-config
         - name: gcp-creds
           secret:
-            secretName: fluent-bit-gcp-creds
+            secretName: fluent-bit-gcp-key
 ---
 apiVersion: v1
 kind: Service
