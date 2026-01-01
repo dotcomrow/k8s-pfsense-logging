@@ -67,6 +67,7 @@ metadata:
 spec:
   updateStrategy:
     type: OnDelete
+    rollingUpdate: null
   selector:
     matchLabels:
       app: fluent-bit
