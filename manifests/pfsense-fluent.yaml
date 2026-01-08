@@ -60,14 +60,14 @@ data:
   gcp-creds.json: <path:secret/data/k8s-pfsense-logging-gcp-logging-creds#value>
 ---
 apiVersion: apps/v1
-kind: DaemonSet
+kind: Deployment
 metadata:
   name: fluent-bit
   namespace: pfsense-logging
 spec:
-  updateStrategy:
-    type: OnDelete
-    rollingUpdate: null
+  replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: fluent-bit
